@@ -16,3 +16,26 @@ def add_reminder():
 
     except:
         print("❌ Invalid date format!\n")
+
+
+def view_reminders():
+    try:
+        with open(FILE_NAME, "r") as file:
+            reminders = file.readlines()
+
+        if not reminders:
+            print("No reminders found. \n")
+            return
+
+        print("\n Your Reminders:")
+        for i, reminder in enumerates(reminders, 1):
+            time_str, message = reminder.strip().split("|")
+            print(f"{i}. {time_str} -> {message} ")  
+        print() 
+
+
+    except: FileNotFoundError:
+    print("No reminders found. \n")
+
+
+    
