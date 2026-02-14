@@ -54,4 +54,4 @@ def delete_reminder():
         print("🗑 Reminder deleted successfully!\n")
 
     except:
-        print(" Invalid choice!\n")   
+        print(" Invalid choice!\n")
