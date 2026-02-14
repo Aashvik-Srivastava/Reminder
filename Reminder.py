@@ -71,7 +71,7 @@ def check_reminders():
             reminder_time = datetime.strptime(time_str, "%Y-%m-%d %H:%M:%S")
 
             if now >= reminder_time:
-                print(f"\n⏰ REMINDER: {message}\n")
+                print(f"\n REMINDER: {message}\n")
             else:
                 updated_reminders.append(reminder)
 
@@ -80,3 +80,40 @@ def check_reminders():
 
     except FileNotFoundError:
         pass
+
+
+def main():
+    while True:
+        print("===== REMINDER MENU =====")
+        print("1. Add Reminder")
+        print("2. View Reminders")
+        print("3. Delete Reminder")
+        print("4. Start Reminder Checker")
+        print("5. Exit")
+
+        choice = input("Choose an option: ")
+
+
+        if choice == "1":
+            add_reminder()
+        elif choice == "2":
+            view_reminders()
+        elif choice == "3":
+            delete_reminder()
+        elif choice == "4":
+            print("⏳ Reminder checker started (Press Ctrl+C to stop)")
+            try:
+                while True:
+                    check_reminders()
+                    time.sleep(60)  # Check every minute
+            except KeyboardInterrupt:
+                print("\nStopped reminder checker.\n")
+        elif choice == "5":
+            print("Goodbye 👋")
+            break
+        else:
+            print("❌ Invalid option!\n")
+
+
+if __name__ == "__main__":
+    main()      
