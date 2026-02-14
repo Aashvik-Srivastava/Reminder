@@ -38,4 +38,20 @@ def view_reminders():
     print("No reminders found. \n")
 
 
-    
+def delete_reminder():
+    try:
+        with open(FILE_NAME, "r") as file:
+            reminders = file.readlines()
+
+        view_reminders()
+        choice = int(input("Enter reminder number to delete: "))
+
+        reminders.pop(choice - 1)
+
+        with open(FILE_NAME, "w") as file:
+            file.writelines(reminders)
+
+        print("🗑 Reminder deleted successfully!\n")
+
+    except:
+        print(" Invalid choice!\n")   
