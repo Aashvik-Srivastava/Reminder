@@ -55,3 +55,28 @@ def delete_reminder():
 
     except:
         print(" Invalid choice!\n")
+
+
+def check_reminders():
+    try:
+        with open(FILE_NAME, "r") as file:
+            reminders = file.readlines()
+
+        now = datetime.now()
+
+        updated_reminders = []
+
+        for reminder in reminders:
+            time_str, message = reminder.strip().split("|")
+            reminder_time = datetime.strptime(time_str, "%Y-%m-%d %H:%M:%S")
+
+            if now >= reminder_time:
+                print(f"\n⏰ REMINDER: {message}\n")
+            else:
+                updated_reminders.append(reminder)
+
+        with open(FILE_NAME, "w") as file:
+            file.writelines(updated_reminders)
+
+    except FileNotFoundError:
+        pass
